@@ -1,12 +1,20 @@
 @startuml
 
-(*) --> "Recherche d'un garage à louer"
-"Recherche d'un garage à louer" -down-> "Selection d'un garage à louer"
+skinparam linetype ortho
 
-if "Garage disponible" then
-  -->[true] "Emettre une reservation"
-  "Emettre une reservation" --> (*)
+(*) --> "Recherche d'un place à louer"
+"Recherche d'un place à louer" -down-> "Selection d'un place à louer"
+
+if "place disponible" then
+  if "Enough money"
+    -->[true] "Emettre une reservation"
+    "Emettre une reservation" --> (*)
+    else 
+    -up->[false] "Recherche d'un place à louer"
+  endif
+  
+  
 else
-  -up->[false] "Recherche d'un garage à louer"
+  -up->[false] "Recherche d'un place à louer"
 endif
 @enduml
